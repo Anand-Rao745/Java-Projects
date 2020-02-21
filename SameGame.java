@@ -20,65 +20,44 @@ import java.lang.NullPointerException;
  * @author  Anand Rao
  */ 
 public class SameGame extends Application {
-  /*Stores the number of rows.*/
+  
   private int rows=12;
-  /*Stores the number of columns.*/
+ 
   private int columns=12;
-  /*Stores the number of colors.*/
+  
   private int colors=3;
   
-  /**
-   * Changes the number of rows.
-   * @param rows  the new number of rows.
-   */
+
   public void setRows(int rows){
     this.rows=rows;
   }
   
-  /**
-   * Returns the number of rows.
-   * @return the number of rows.
-   */
+
   public int getRows(){
     return rows;
   }
   
-  /**
-   * Changes the number of columns.
-   * @param columns  the new number of columns.
-   */
+
   public void setColumns(int columns){
     this.columns=columns;
   }
   
-  /**
-   * Returns the number of columns.
-   * @return the number of columns.
-   */
+
   public int getColumns(){
     return columns;
   }
   
-  /**
-   * Changes the number of colors.
-   * @param colors  the new number of colors.
-   */
+ 
   public void setColors(int colors){
     this.colors=colors;
   }
   
-  /**
-   * Returns the number of colors.
-   * @return the number of colors.
-   */
+ 
   public int getColors(){
     return colors;
   }
   
-  /** Create the GUI
-    * @param primaryStage  the main display
-    * @throws NumberFormatException  if any of the command line arguments are invalid.
-    */
+
   public void start(Stage primaryStage)throws NumberFormatException{
     try{
       if(this.getParameters().getRaw().size()!=0){
@@ -150,12 +129,7 @@ public class SameGame extends Application {
     primaryStage.show();
   }
   
-  /**
-   * Returns a LinkedList of contiguous buttons to the left of the button that was clicked.
-   * @param origin  the button that was clicked.
-   * @param array  the board that contains the buttons.
-   * @return a LinkedList of contiguous buttons to the left of the button that was clicked.
-   */
+
   public LinkedList<SameGameButton>checkLeft(SameGameButton origin, SameGameButton[][]array){
     LinkedList<SameGameButton>matches= new LinkedList<SameGameButton>();
     //This loop checks if the button to the left of the origin has the same color, and adds it to a LinkedList if it does.
@@ -167,12 +141,7 @@ public class SameGame extends Application {
     return matches;
   }
   
-  /**
-   * Returns a LinkedList of contiguous buttons to the right of the button that was clicked.
-   * @param origin  the button that was clicked.
-   * @param array  the board that contains the buttons.
-   * @return a LinkedList of contiguous buttons to the right of the button that was clicked.
-   */
+
   public LinkedList<SameGameButton>checkRight(SameGameButton origin, SameGameButton[][]array){
     LinkedList<SameGameButton>matches= new LinkedList<SameGameButton>();
     //This loop checks if the button to the right of the origin has the same color, and adds it to a LinkedList if it does.
@@ -185,12 +154,7 @@ public class SameGame extends Application {
     return matches;
   }
   
-  /**
-   * Returns a LinkedList of contiguous buttons below the button that was clicked.
-   * @param origin  the button that was clicked.
-   * @param array  the board that contains the buttons.
-   * @return a LinkedList of contiguous buttons below the button that was clicked.
-   */
+
   public LinkedList<SameGameButton>checkDown(SameGameButton origin, SameGameButton[][]array){
     LinkedList<SameGameButton>matches= new LinkedList<SameGameButton>();
     //This loop checks if the button below the origin has the same color, and adds it to a LinkedList if it does.
@@ -203,12 +167,7 @@ public class SameGame extends Application {
     return matches;
   }
   
-  /**
-   * Returns a LinkedList of contiguous buttons above the button that was clicked.
-   * @param origin  the button that was clicked.
-   * @param array  the board that contains the buttons.
-   * @return a LinkedList of contiguous buttons above the button that was clicked.
-   */
+
   public LinkedList<SameGameButton>checkUp(SameGameButton origin, SameGameButton[][]array){
     LinkedList<SameGameButton>matches= new LinkedList<SameGameButton>();
     //This loop checks if the button above the origin has the same color, and adds it to a LinkedList if it does.
@@ -221,10 +180,7 @@ public class SameGame extends Application {
     return matches;
   }
   
-  /**
-   * Moves buttons down to fill empty spaces.
-   * @param array  the board that contains the buttons.
-   */ 
+
   public static void drop(SameGameButton[][]array){
     //This loop checks if each colored button has an empty button below it, and swaps colors if it does, then calls the method again.
     for(int i=0;i<array.length-1;i++){
@@ -238,10 +194,7 @@ public class SameGame extends Application {
     }
   }
   
-  /**
-   * Moves buttons to the left to fill empty columns.
-   * @param array  the board that contains the buttons.
-   */
+
   public static void shiftLeft(SameGameButton[][]array){
     boolean isEmpty=false;
     //This loop checks if each column is empty, and swaps colors with the next column if it is.
@@ -265,13 +218,7 @@ public class SameGame extends Application {
     }    
   }
   
-  /**
-   * Compiles a list of all buttons that need to be updated.
-   * @param array  the board that contains the buttons.
-   * @param s  a SameGame instance to run other methods.
-   * @param b  a button that has been clicked.
-   * @return a list of all buttons that need to be updated.
-   */
+
   public LinkedList<SameGameButton>checkAll(SameGameButton[][]array, SameGame s, SameGameButton b){
     LinkedList<SameGameButton>gray= new LinkedList<SameGameButton>();
     //This loop adds each button returned by checkLeft to a LinkedList.
@@ -293,11 +240,7 @@ public class SameGame extends Application {
     return gray;
   }
   
-  /**
-   * Checks whether the game is over and exits if it is.
-   * @param array  the board that contains the buttons.
-   * @param s  a SameGame instance to run other methods.
-   */
+
   public void checkWin(SameGameButton[][]array, SameGame s){
     //This loop checks to see if there are any remaining adjacent buttons of the same color.
     for(int i=0;i<array.length;i++){
@@ -313,10 +256,7 @@ public class SameGame extends Application {
     System.exit(0);
   }
   
-  /**
-   * Launches the program.
-   * @param args  the dimensions of the board and the number of colors.
-   */
+
   public static void main(String[] args){
     Application.launch(args);                   
   }
